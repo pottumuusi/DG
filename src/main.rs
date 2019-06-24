@@ -71,14 +71,14 @@ fn break_infinite_loop() -> () {
 }
 
 fn iterate_through_vector(integers: Vec<i32>) -> () {
-    let mut iterator;
+    let iterator;
 
     println!("Running: iterate_through_vector");
 
     // iterator = &integers;
     // iterator = integers;
     // The above should be usable somehow as well
-    iterator = integers.iter()
+    iterator = integers.iter();
 
     for i in iterator {
         println!("i is: {}", i);
@@ -90,9 +90,16 @@ fn iterate_through_vector(integers: Vec<i32>) -> () {
 }
 
 fn run_loop_examples() -> () {
+    let mut vec: Vec<i32> = Vec::new();
+    vec.push(0);
+    vec.push(1);
+    vec.push(2);
+    vec.push(3);
+
     print_10_to_0();
     break_infinite_loop();
-    iterate_through_vector();
+
+    iterate_through_vector(vec);
 }
 
 fn main() {
