@@ -1,3 +1,5 @@
+// TODO Continue from line where "enumerate()" is mentioned
+
 // If prefixed with "_" compiler will not warn that the parameter is not used.
 // The parameter name is not mandatory, simply "_" can be used.
 fn get_world(_x: &'static str) -> &'static str {
@@ -43,6 +45,56 @@ fn run_if_examples() -> () {
     println!("Wanted fruit is: {}", wanted_fruit);
 }
 
+fn print_10_to_0() -> () {
+    let mut x = 10;
+
+    println!("Running: print_10_to_0");
+    while x > 0 {
+        println!("Current value of x is: {}", x);
+        x = x - 1;
+    }
+}
+
+fn break_infinite_loop() -> () {
+    let mut x = 3;
+
+    println!("Running: break_infinite_loop");
+    loop {
+        println!("Current value of x is: {}", x);
+
+        if x <= 0 {
+            break;
+        }
+
+        x = x - 1;
+    }
+}
+
+fn iterate_through_vector(integers: Vec<i32>) -> () {
+    let mut iterator;
+
+    println!("Running: iterate_through_vector");
+
+    // iterator = &integers;
+    // iterator = integers;
+    // The above should be usable somehow as well
+    iterator = integers.iter()
+
+    for i in iterator {
+        println!("i is: {}", i);
+    }
+
+    for i in 0..integers.len() {
+        println!("i is: {}, integers[i] is: {}", i, integers[i]);
+    }
+}
+
+fn run_loop_examples() -> () {
+    print_10_to_0();
+    break_infinite_loop();
+    iterate_through_vector();
+}
+
 fn main() {
     let world = "world";
     let explicit_world: &'static str = "world";
@@ -51,5 +103,9 @@ fn main() {
     println!("Hello, {}! 2", explicit_world);
     println!("Hello, {}! 3", get_world("anything"));
 
+    println!("\nConditional examples:");
     run_if_examples();
+
+    println!("\nLoop examples:");
+    run_loop_examples();
 }
