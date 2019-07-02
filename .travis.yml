@@ -1,0 +1,14 @@
+addons:
+  apt:
+    sources:
+    - ubuntu-toolchain-r-test
+    - llvm-toolchain-trusty-8
+    packages:
+    - libstdc++-8-dev
+
+install:
+    - sudo apt-get -y install clang++-8
+
+script:
+    - make all
+    - make test
