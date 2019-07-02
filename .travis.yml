@@ -1,0 +1,13 @@
+addons:
+  apt:
+    sources:
+    - ubuntu-toolchain-r-test
+    packages:
+    - libstdc++-7-dev
+
+install:
+    # clang
+    - sudo apt-get -y install clang++-7
+
+script:
+    - clang++-7 --version
