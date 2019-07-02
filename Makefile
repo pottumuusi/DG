@@ -10,7 +10,7 @@ OUT_DIR := out
 OUT_BIN_NAME := DG
 OUT_BIN := $(OUT_DIR)/$(OUT_BIN_NAME)
 
-SRC_FILES := $(wildcard $(SRC_DIR)/*.cxx)
+SRC_FILES := $(wildcard */*.cxx)
 
 # .PHONY:
 
