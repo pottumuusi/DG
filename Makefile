@@ -1,6 +1,8 @@
 CXX := $(shell which clang++ clang++-8 2> /dev/null | tail -1 | xargs basename)
 TIDY := $(shell which clang-tidy clang-tidy-8 2> /dev/null | tail -1 | xargs basename)
-TIDY_OPTS := -checks=* -warnings-as-errors=*
+TIDY_OPTS := \
+    -checks=*,-fuchsia-default-arguments \
+    -warnings-as-errors=*
 TIDY_COMPILATION_OPTS := --
 TIDY_FLAGS := $(TIDY_OPTS) $(TIDY_COMPILATION_OPTS)
 
@@ -26,5 +28,5 @@ analyze: $(SRC_FILES)
 	echo OK
 
 test: all
-	$(shell test "$$($(OUT_BIN))" = "Hello world!" ; if [ 0 != $$(echo $$?) ] ; then echo "Shell test failure" ; fi)
+	$(shell test "$$($(OUT_BIN) | grep 'Player 1')" = "Name of actors[0] is: Player 1" ; if [ 0 != $$(echo $$?) ] ; then echo "Shell test failure" ; fi)
 	echo OK

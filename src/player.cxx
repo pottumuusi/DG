@@ -1,6 +1,6 @@
 #include <iostream>
 
-// TODO Use a less fragile way to include
+// TODO(pottumuusi) Use a less fragile way to include
 #include "../include/player.h"
 
 Player::Player() {
@@ -11,7 +11,7 @@ Player::~Player() {
     std::cout << "Constructor of Player running" << std::endl;
 }
 
-// TODO expand so that Locatable constructor is called with position
-Player::Player(std::string _name) : Actor{_name} {
+// TODO(pottumuusi) expand so that Locatable constructor is called with position
+Player::Player(std::string _name) : Actor{std::move(_name)} {
     std::cout << "Constructor (string) of Player running" << std::endl;
 }

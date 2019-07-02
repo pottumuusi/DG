@@ -9,7 +9,7 @@ public:
     ~Actor();
     Actor(std::string);
 
-    std::string getName();
+    std::string getName() const;
 
 private:
     std::string name;

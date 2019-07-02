@@ -11,7 +11,7 @@ public:
     ~Game();
 
     void init();
-    void test_print();
+    void test_print() const;
 
 private:
     std::vector<Actor> actors;

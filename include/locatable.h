@@ -5,7 +5,7 @@
 
 class Locatable {
 public:
-    Position& getPosition();
+    Position& getPosition() const;
 private:
     Position position;
 };

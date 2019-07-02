@@ -2,7 +2,7 @@
 
 #include "../include/game.h"
 
-// TODO mark gnu::pure functions
+// TODO(pottumuusi) mark gnu::pure functions
 
 int main() {
     Game game;

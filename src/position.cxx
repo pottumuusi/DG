@@ -1,6 +1,6 @@
 #include <iostream>
 
-// TODO Use a less fragile way for inclusion
+// TODO(pottumuusi) Use a less fragile way for inclusion
 #include "../include/position.h"
 
 Position::Position() : x{-1}, y{-1} {
