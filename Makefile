@@ -1,5 +1,5 @@
-CXX := clang++-8
-TIDY := clang-tidy-8
+CXX := $(shell which clang++ clang++-8 2> /dev/null | tail -1 | xargs basename)
+TIDY := $(shell which clang-tidy clang-tidy-8 2> /dev/null | tail -1 | xargs basename)
 TIDY_OPTS := -checks=* -warnings-as-errors=*
 TIDY_COMPILATION_OPTS := --
 TIDY_FLAGS := $(TIDY_OPTS) $(TIDY_COMPILATION_OPTS)
