@@ -1,7 +1,0 @@
-[package]
-name = "DG"
-version = "0.1.0"
-authors = ["Aleksi Backman <bddubbb@gmail.com>"]
-edition = "2018"
-
-[dependencies]
