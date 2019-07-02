@@ -11,8 +11,9 @@ addons:
     - libstdc++-8-dev
 
 install:
-    - sudo apt-get -y install clang++-8
+    - sudo apt-get -y install clang++-8 clang-tidy-8
 
 script:
     - make all
+    - make analyze
     - make test
