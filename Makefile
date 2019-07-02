@@ -1,15 +1,32 @@
-CXX := clang++-8
+CXX := $(shell which clang++ clang++-8 2> /dev/null | tail -1 | xargs basename)
+TIDY := $(shell which clang-tidy clang-tidy-8 2> /dev/null | tail -1 | xargs basename)
+TIDY_OPTS := \
+    -checks=*,-fuchsia-default-arguments \
+    -warnings-as-errors=*
+TIDY_COMPILATION_OPTS := --
+TIDY_FLAGS := $(TIDY_OPTS) $(TIDY_COMPILATION_OPTS)
 
 SRC_DIR := src
 OUT_DIR := out
-BIN_NAME := DG
 
-.PHONY: all test
+OUT_BIN_NAME := DG
+OUT_BIN := $(OUT_DIR)/$(OUT_BIN_NAME)
 
-all:
+SRC_FILES := $(wildcard */*.cxx)
+
+# .PHONY:
+
+# TODO automatic dep file creation (to track included files) by using cpp
+
+# TODO add further dependencies, object files instead of sources
+all: $(SRC_FILES)
 	$(shell if [ ! -d $(OUT_DIR) ] ; then mkdir $(OUT_DIR) ; fi)
-	$(CXX) -o $(OUT_DIR)/$(BIN_NAME) $(SRC_DIR)/main.cpp
+	$(CXX) -o $(OUT_BIN) $(SRC_FILES)
 
-test:
-	$(shell test "$$($(OUT_DIR)/$(BIN_NAME))" = "Hello world!" ; if [ 0 != $$(echo $$?) ] ; then echo "Shell test failure" ; fi)
+analyze: $(SRC_FILES)
+	$(TIDY) $(SRC_FILES) $(TIDY_FLAGS)
+	echo OK
+
+test: all
+	$(shell test "$$($(OUT_BIN) | grep 'Player 1')" = "Name of actors[0] is: Player 1" ; if [ 0 != $$(echo $$?) ] ; then echo "Shell test failure" ; fi)
 	echo OK
