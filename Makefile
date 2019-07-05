@@ -32,10 +32,11 @@ $(OUT_BIN): $(SRC_FILES)
 	$(shell if [ ! -d $(OUT_DIR) ] ; then mkdir $(OUT_DIR) ; fi)
 	$(CXX) -o $@ $(CXX_FLAGS) $^
 
+# $(shell if [ -n "$$($(VALGRIND) $(OUT_BIN) 2>&1 1>/dev/null | grep $(VALGRIND_OUTPUT_FAILURE_TAG))" ] ; then echo "Fail: leak detected by valgrind" ; fi)
 analyze: $(SRC_FILES) $(OUT_BIN)
 	$(TIDY) $(SRC_FILES) $(TIDY_FLAGS)
 	echo Running valgrind...
-	$(shell if [ -n "$$($(VALGRIND) $(OUT_BIN) 2>&1 1>/dev/null | grep $(VALGRIND_OUTPUT_FAILURE_TAG))" ] ; then echo "Fail: leak detected by valgrind" ; fi)
+	$(VALGRIND) $(OUT_BIN)
 	echo OK
 
 test: all
