@@ -12,6 +12,7 @@ addons:
 
 install:
     - sudo apt-get -y install clang++-8 clang-tidy-8
+    - scripts/install_valgrind.sh
 
 script:
     - make all
