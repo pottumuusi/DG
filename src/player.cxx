@@ -1,7 +1,6 @@
 #include <iostream>
 
-// TODO(pottumuusi) Use a less fragile way to include
-#include "../include/player.h"
+#include "player.h"
 
 Player::Player() {
     std::cout << "Default constructor of Player running" << std::endl;
