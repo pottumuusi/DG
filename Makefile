@@ -30,3 +30,6 @@ analyze: $(SRC_FILES)
 test: all
 	$(shell test "$$($(OUT_BIN) | grep 'Player 1')" = "Name of actors[0] is: Player 1" ; if [ 0 != $$(echo $$?) ] ; then echo "Shell test failure" ; fi)
 	echo OK
+
+run: all
+	$(OUT_BIN)
