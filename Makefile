@@ -13,13 +13,16 @@ OUT_BIN_NAME := DG
 OUT_BIN := $(OUT_DIR)/$(OUT_BIN_NAME)
 
 SRC_FILES := $(wildcard */*.cxx)
+# Define OBJ_FILES in case wanting to use in future
+OBJ_FILES := $(SRC_FILES:.cxx=.o)
 
 # .PHONY:
 
 # TODO automatic dep file creation (to track included files) by using cpp
 
-# TODO add further dependencies, object files instead of sources
-all: $(SRC_FILES)
+all: $(OUT_BIN)
+
+$(OUT_BIN): $(SRC_FILES)
 	$(shell if [ ! -d $(OUT_DIR) ] ; then mkdir $(OUT_DIR) ; fi)
 	$(CXX) -o $(OUT_BIN) $(SRC_FILES)
 
