@@ -1,7 +1,6 @@
 #include <iostream>
 
-// TODO(pottumuusi) Use a less fragile way for inclusion
-#include "../include/position.h"
+#include "position.h"
 
 Position::Position() : x{-1}, y{-1} {
     std::cout << "Default constructor of Position running" << std::endl;

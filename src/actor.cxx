@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "../include/actor.h"
+#include "actor.h"
 
 // TODO(pottumuusi) Do not allow to construct without name
 Actor::Actor() {

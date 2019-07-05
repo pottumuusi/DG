@@ -1,7 +1,7 @@
 #include <iostream>
 
-#include "../include/game.h"
-#include "../include/player.h"
+#include "game.h"
+#include "player.h"
 
 Game::Game() {
     std::cout << "Default constructor of Game running" << std::endl;
