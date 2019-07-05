@@ -24,10 +24,10 @@ all: $(OUT_BIN)
 
 $(OUT_BIN): $(SRC_FILES)
 	$(shell if [ ! -d $(OUT_DIR) ] ; then mkdir $(OUT_DIR) ; fi)
-	$(CXX) -o $(OUT_BIN) $(SRC_FILES)
+	$(CXX) -o $@ $^
 
 analyze: $(SRC_FILES)
-	$(TIDY) $(SRC_FILES) $(TIDY_FLAGS)
+	$(TIDY) $^ $(TIDY_FLAGS)
 	echo OK
 
 test: all
