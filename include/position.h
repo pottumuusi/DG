@@ -6,11 +6,14 @@ public:
     Position();
     ~Position();
 
-    Position(int _x, int _y);
+    Position(const int _x, const int _y);
+
+    int getX() const;
+    int getY() const;
 
 private:
-    const int x;
-    const int y;
+    int x;
+    int y;
 };
 
 #endif // POSITION_H_DEFINED
