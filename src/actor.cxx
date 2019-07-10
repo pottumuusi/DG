@@ -2,19 +2,26 @@
 
 #include "actor.h"
 
-// TODO(pottumuusi) Do not allow to construct without name
-Actor::Actor() {
-    std::cout << "Default constructor of Actor running" << std::endl;
-}
-
-Actor::~Actor() {
+Actor::~Actor()
+{
     std::cout << "Destructor of Actor running" << std::endl;
 }
 
-Actor::Actor(std::string _name) : name{std::move(_name)} {
+Actor::Actor(std::string _name)
+    : Actor{std::move(_name), -1, -1}
+{
+    std::cout << "Constructor (std::string) of Actor (" << _name << ") running" << std::endl;
+}
+
+Actor::Actor(std::string _name, const int _x, const int _y)
+    : name{std::move(_name)}
+    , Locatable{_x, _y}
+{
+    std::cout << "Constructor (std::string, int, int) of Actor (" << _name << ") running" << std::endl;
 }
 
 [[gnu::pure]]
-std::string Actor::getName() const {
+std::string Actor::getName() const
+{
     return name;
 }
