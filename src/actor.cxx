@@ -8,8 +8,7 @@ Actor::~Actor()
 }
 
 Actor::Actor(std::string _name)
-    : name{std::move(_name)}
-    , Locatable{-1, -1}
+    : Actor{std::move(_name), -1, -1}
 {
     std::cout << "Constructor (std::string) of Actor (" << _name << ") running" << std::endl;
 }

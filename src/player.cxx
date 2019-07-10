@@ -8,7 +8,7 @@ Player::~Player()
 }
 
 Player::Player(std::string _name)
-    : Actor{std::move(_name)}
+    : Player{std::move(_name), -1, -1}
 {
     std::cout << "Constructor (string) of Player running" << std::endl;
 }
