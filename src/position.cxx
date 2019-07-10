@@ -2,12 +2,6 @@
 
 #include "position.h"
 
-Position::Position()
-    : x{-1}, y{-1}
-{
-    std::cout << "Default constructor of Position running" << std::endl;
-}
-
 Position::~Position()
 {
     std::cout << "Destructor of Position running" << std::endl;

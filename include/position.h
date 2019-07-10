@@ -3,7 +3,7 @@
 
 class Position {
 public:
-    Position();
+    Position() = delete;
     ~Position();
 
     Position(const int _x, const int _y);

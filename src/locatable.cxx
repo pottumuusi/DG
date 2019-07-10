@@ -8,9 +8,9 @@ Locatable::~Locatable()
 }
 
 Locatable::Locatable(const int _x, const int _y)
+    : position{_x, _y}
 {
     std::cout << "Constructor (int, int) of Locatable running" << std::endl;
-    position = Position{_x, _y};
 }
 
 [[gnu::pure]]
