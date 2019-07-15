@@ -11,10 +11,11 @@ addons:
     - libstdc++-8-dev
 
 install:
-    - sudo apt-get -y install clang++-8 clang-tidy-8
+    - sudo apt-get -y install clang++-8 clang-tidy-8 cmake
     - scripts/install_valgrind.sh
+    - scripts/install_gtest.sh
 
 script:
-    - make all
+    - make game
     - make analyze
-    - make test
+    - make run_tests
