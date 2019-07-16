@@ -43,6 +43,13 @@ game: $(OUT_BIN)
 test: $(OUT_TEST_BIN)
 	echo test OK
 
+run: game
+	$(OUT_BIN)
+
+run_tests: test
+	$(OUT_TEST_BIN)
+	echo run_tests OK
+
 analyze: $(SRC_FILES) $(TEST_SRC_FILES) $(OUT_BIN)
 	$(TIDY) $(SRC_FILES) $(TEST_SRC_FILES) $(TIDY_FLAGS)
 	echo Running valgrind...
@@ -59,10 +66,3 @@ $(OUT_TEST_BIN): $(TEST_DEPS)
 	$(shell if [ ! -d $(OUT_TEST_DIR) ] ; then mkdir $(OUT_TEST_DIR) ; fi)
 	$(CXX) -o $@ $^ $(CXX_TEST_FLAGS)
 	echo OK
-
-run: game
-	$(OUT_BIN)
-
-run_tests: test
-	$(OUT_TEST_BIN)
-	echo run_tests OK
