@@ -24,7 +24,6 @@ VALGRIND_OUTPUT_FAILURE_TAG := LEAK
 INCS := -I$(INCLUDE_TOP_DIR)
 TEST_INCS := -I/opt/gtest/include/
 
-# NOTE include flags __need__ to be on the left end of arguments.
 CXX_FLAGS := $(INCS)
 CXX_TEST_FLAGS := -L/opt/gtest/lib -lgtest -lpthread $(CXX_FLAGS) $(TEST_INCS)
 
