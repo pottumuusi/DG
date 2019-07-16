@@ -44,16 +44,16 @@ game: $(OUT_BIN)
 test: $(OUT_TEST_BIN)
 	echo test OK
 
-# Having linker flags before source files caused build to fail during linking.
-$(OUT_BIN): $(SRC_FILES)
-	$(shell if [ ! -d $(OUT_DIR) ] ; then mkdir $(OUT_DIR) ; fi)
-	$(CXX) -o $@ $^ $(CXX_FLAGS)
-
 analyze: $(SRC_FILES) $(TEST_SRC_FILES) $(OUT_BIN)
 	$(TIDY) $(SRC_FILES) $(TEST_SRC_FILES) $(TIDY_FLAGS)
 	echo Running valgrind...
 	$(shell if [ -n "$$($(VALGRIND) $(OUT_BIN) 2>&1 1>/dev/null | grep $(VALGRIND_OUTPUT_FAILURE_TAG))" ] ; then echo "Fail: leak detected by valgrind" ; fi)
 	echo analyze OK
+
+# Having linker flags before source files caused build to fail during linking.
+$(OUT_BIN): $(SRC_FILES)
+	$(shell if [ ! -d $(OUT_DIR) ] ; then mkdir $(OUT_DIR) ; fi)
+	$(CXX) -o $@ $^ $(CXX_FLAGS)
 
 # Having linker flags before source files caused build to fail during linking.
 $(OUT_TEST_BIN): $(TEST_DEPS)
