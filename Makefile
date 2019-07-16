@@ -3,44 +3,66 @@ TIDY := $(shell which clang-tidy clang-tidy-8 2> /dev/null | tail -1 | xargs bas
 VALGRIND := valgrind
 
 SRC_DIR := src
+TEST_DIR := test
 OUT_DIR := out
+OUT_TEST_DIR := $(OUT_DIR)/test
 INCLUDE_TOP_DIR := include
 
 OUT_BIN_NAME := DG
 OUT_BIN := $(OUT_DIR)/$(OUT_BIN_NAME)
+OUT_TEST_BIN_NAME := DG_test
+OUT_TEST_BIN := $(OUT_TEST_DIR)/$(OUT_TEST_BIN_NAME)
 
-SRC_FILES := $(wildcard */*.cxx)
+SRC_FILES := $(shell find $(SRC_DIR)/ -name *.cxx)
+TEST_SRC_FILES := $(shell find $(TEST_DIR)/ -name *.cxx)
+TEST_DEPS := $(filter-out $(SRC_DIR)/main.cxx,$(SRC_FILES)) $(TEST_SRC_FILES)
+
 # Define OBJ_FILES in case wanting to use in future
 OBJ_FILES := $(SRC_FILES:.cxx=.o)
 VALGRIND_OUTPUT_FAILURE_TAG := LEAK
 
-CXX_FLAGS := -I$(INCLUDE_TOP_DIR)
+INCS := -I$(INCLUDE_TOP_DIR)
+TEST_INCS := -I/opt/gtest/include/
+
+CXX_FLAGS := $(INCS)
+CXX_TEST_FLAGS := -L/opt/gtest/lib -lgtest -lpthread $(CXX_FLAGS) $(TEST_INCS)
 
 TIDY_OPTS := \
     -checks=*,-fuchsia-default-arguments \
     -warnings-as-errors=*
-TIDY_COMPILATION_OPTS := -- -I$(INCLUDE_TOP_DIR)
+TIDY_COMPILATION_OPTS := -- $(INCS) $(TEST_INCS)
 TIDY_FLAGS := $(TIDY_OPTS) $(TIDY_COMPILATION_OPTS)
 
 # .PHONY:
 
 # TODO automatic dep file creation (to track included files) by using cpp
 
-all: $(OUT_BIN)
+game: $(OUT_BIN)
+	echo game OK
 
-$(OUT_BIN): $(SRC_FILES)
-	$(shell if [ ! -d $(OUT_DIR) ] ; then mkdir $(OUT_DIR) ; fi)
-	$(CXX) -o $@ $(CXX_FLAGS) $^
+test: $(OUT_TEST_BIN)
+	echo test OK
 
-analyze: $(SRC_FILES) $(OUT_BIN)
-	$(TIDY) $(SRC_FILES) $(TIDY_FLAGS)
+run: game
+	$(OUT_BIN)
+
+run_tests: test
+	$(OUT_TEST_BIN)
+	echo run_tests OK
+
+analyze: $(SRC_FILES) $(TEST_SRC_FILES) $(OUT_BIN)
+	$(TIDY) $(SRC_FILES) $(TEST_SRC_FILES) $(TIDY_FLAGS)
 	echo Running valgrind...
 	$(shell if [ -n "$$($(VALGRIND) $(OUT_BIN) 2>&1 1>/dev/null | grep $(VALGRIND_OUTPUT_FAILURE_TAG))" ] ; then echo "Fail: leak detected by valgrind" ; fi)
-	echo OK
+	echo analyze OK
 
-test: all
-	$(shell test "$$($(OUT_BIN) | grep 'Player 1')" = "Name of actors[0] is: Player 1" ; if [ 0 != $$(echo $$?) ] ; then echo "Fail: no expected print" ; fi)
-	echo OK
+# Having linker flags before source files caused build to fail during linking.
+$(OUT_BIN): $(SRC_FILES)
+	$(shell if [ ! -d $(OUT_DIR) ] ; then mkdir $(OUT_DIR) ; fi)
+	$(CXX) -o $@ $^ $(CXX_FLAGS)
 
-run: all
-	$(OUT_BIN)
+# Having linker flags before source files caused build to fail during linking.
+$(OUT_TEST_BIN): $(TEST_DEPS)
+	$(shell if [ ! -d $(OUT_TEST_DIR) ] ; then mkdir $(OUT_TEST_DIR) ; fi)
+	$(CXX) -o $@ $^ $(CXX_TEST_FLAGS)
+	echo OK
