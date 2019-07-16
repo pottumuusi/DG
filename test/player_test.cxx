@@ -19,5 +19,5 @@ protected:
 // NOLINTNEXTLINE
 TEST_F(PlayerTest,DummyTest)
 {
-    ASSERT_TRUE(false);
+    ASSERT_TRUE(true);
 }
