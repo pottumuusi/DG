@@ -1,0 +1,6 @@
+#### googletest tutorial
+http://www.yolinux.com/TUTORIALS/Cpp-GoogleTest.html
+
+#### Argument order for compilers in Linux.
+#### Helped when kept having linking issue due to wrong order of arguments.
+https://stackoverflow.com/questions/2624238/c-undefined-references-with-static-library
