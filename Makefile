@@ -57,7 +57,7 @@ $(OUT_BIN): $(SRC_FILES)
 # Having linker flags before source files caused build to fail during linking.
 $(OUT_TEST_BIN): $(TEST_DEPS)
 	$(shell if [ ! -d $(OUT_TEST_DIR) ] ; then mkdir $(OUT_TEST_DIR) ; fi)
-	$(CXX) -o $@ $^ $(CXX_TEST_FLAGS) $(INCS)
+	$(CXX) -o $@ $^ $(CXX_TEST_FLAGS)
 	echo OK
 
 run: game
