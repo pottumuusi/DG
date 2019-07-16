@@ -38,7 +38,7 @@ TIDY_FLAGS := $(TIDY_OPTS) $(TIDY_COMPILATION_OPTS)
 # TODO automatic dep file creation (to track included files) by using cpp
 
 game: $(OUT_BIN)
-	echo all OK
+	echo game OK
 
 test: $(OUT_TEST_BIN)
 	echo test OK
