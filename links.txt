@@ -11,3 +11,7 @@ man curs_window
 http://www.tldp.org/HOWTO/NCURSES-Programming-HOWTO/
 https://invisible-island.net/ncurses/ncurses-intro.html
 https://github.com/wkoszek/ncurses_guide
+http://www.tldp.org/HOWTO/NCURSES-Programming-HOWTO/ncurses_programs.tar.gz
+
+#### Cross platform
+https://aur.archlinux.org/packages/mingw-w64-gcc/
