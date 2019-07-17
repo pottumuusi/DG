@@ -24,7 +24,7 @@ VALGRIND_OUTPUT_FAILURE_TAG := LEAK
 INCS := -I$(INCLUDE_TOP_DIR)
 TEST_INCS := -I/opt/gtest/include/
 
-CXX_FLAGS := $(INCS)
+CXX_FLAGS := -lncurses $(INCS)
 CXX_TEST_FLAGS := -L/opt/gtest/lib -lgtest -lpthread $(CXX_FLAGS) $(TEST_INCS)
 
 TIDY_OPTS := \

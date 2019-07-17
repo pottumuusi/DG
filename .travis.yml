@@ -14,6 +14,7 @@ install:
     - sudo apt-get -y install clang++-8 clang-tidy-8 cmake
     - scripts/install_valgrind.sh
     - scripts/install_gtest.sh
+    - scripts/install_ncurses.sh
 
 script:
     - make game

@@ -10,6 +10,10 @@ int main() {
 
     game.init();
     game.test_print();
+// TODO(#28) Add deinit to game
+#if 0
+    game.deinit();
+#endif
 
     return 0;
 }

@@ -1,4 +1,5 @@
 #include <iostream>
+#include <ncurses.h>
 
 #include "game.h"
 #include "player.h"
@@ -18,10 +19,23 @@ void Game::init() {
     Player player2("Player 2", p2_x, p2_y);
     std::cout << "Game init running" << std::endl;
 
+    initscr();
+    printw("Hello World !!!");
+    refresh();
+    getch();
+    endwin();
+
     // TODO(pottumuusi) change to use references
     actors.push_back(player1);
     actors.push_back(player2);
 }
+
+// TODO(#28) Add deinit to game
+#if 0
+void Game::deinit() {
+    endwin();
+}
+#endif
 
 void Game::test_print() const {
     std::cout << "Name of actors[0] is: " << actors[0].getName() << std::endl;
