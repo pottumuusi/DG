@@ -53,7 +53,7 @@ run_tests: test
 analyze: $(SRC_FILES) $(TEST_SRC_FILES) $(OUT_BIN)
 	$(TIDY) $(SRC_FILES) $(TEST_SRC_FILES) $(TIDY_FLAGS)
 	echo Running valgrind...
-	$(shell if [ -n "$$($(VALGRIND) $(OUT_BIN) 2>&1 1>/dev/null | grep $(VALGRIND_OUTPUT_FAILURE_TAG))" ] ; then echo "Fail: leak detected by valgrind" ; fi)
+	$(shell $(VALGRIND) $(OUT_BIN) --nointeractive 2>&1 1>/dev/null | scripts/is_valgrind_failure.pl - 2>&1)
 	echo analyze OK
 
 # Having linker flags before source files caused build to fail during linking.
