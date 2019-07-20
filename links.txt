@@ -4,3 +4,20 @@ http://www.yolinux.com/TUTORIALS/Cpp-GoogleTest.html
 #### Argument order for compilers in Linux.
 #### Helped when kept having linking issue due to wrong order of arguments.
 https://stackoverflow.com/questions/2624238/c-undefined-references-with-static-library
+
+#### ncurses
+man ncurses
+man curs_window
+http://www.tldp.org/HOWTO/NCURSES-Programming-HOWTO/
+https://invisible-island.net/ncurses/ncurses-intro.html
+https://github.com/wkoszek/ncurses_guide
+http://www.tldp.org/HOWTO/NCURSES-Programming-HOWTO/ncurses_programs.tar.gz
+https://invisible-island.net/ncurses/ncurses.faq.html#config_leaks
+
+#### Cross platform
+https://aur.archlinux.org/packages/mingw-w64-gcc/
+
+#### Valgrind
+https://wiki.wxwidgets.org/Valgrind_Suppression_File_Howto
+https://wiki.wxwidgets.org/Parse_valgrind_suppressions.sh
+http://valgrind.org/docs/manual/manual-core.html#manual-core.suppress
